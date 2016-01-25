@@ -1,7 +1,9 @@
 iTerm Dynamic Profile
 =========
 
-Ansible role to create iTerm dynamic profiles using Ansible's AWS dynamic inventory.  It will generate one json file per AWS dynamic inventory.
+Ansible role to create iTerm dynamic profiles using Ansible's AWS dynamic inventory.  It will generate one json file per AWS dynamic inventory.  By default they will be created in `~/Library/Application Support/iTerm2/DynamicProfiles/` and iTerm will scan then update the profiles when the json files are created or updated.
+
+If iTerm has problems scanning the dynamic inventory files, it will log errors in `/var/log/system.log`.
 
 An overview of iTerm Dynamic Profiles can be found [here](https://iterm2.com/dynamic-profiles.html).
 
@@ -26,7 +28,7 @@ Role Variables
 * `tag_vars` List of variables to create iTerm tags from.
 * `env_tag` name of environment that is being generated.  Override value by passing in extra-vars or from inventory.
 * `profile_filename` name of json file that is generated.  Default is `aws_{{ env_tag }}`.
-* `parent_profile` The dynamic profile will inherit properties from this existing iTerm profile.
+* `parent_profile` Dynamic profiles can inherit existing iTerm profiles.  This role will use the naming standard `aws_{{ env_tag }}` (ie, aws_production).  If those profiles do not exist, the dynamic profile will inherit the *Default* profile.  
 
 
 Example Playbook
