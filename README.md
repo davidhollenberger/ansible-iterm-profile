@@ -16,7 +16,7 @@ Requirements
 Role Variables
 --------------
 
-** extra-vars **
+**extra-vars**
 
 * `hosts` Ansible host group to gather facts to base dynamic inventory on.  You need to have ssh access to all hosts in the group for this role to work.
 
@@ -46,7 +46,7 @@ Example Playbook
   hosts: localhost
   connection: local
   roles:
-    - role: ansible-role-iterm
+    - role: ansible-iterm-profile
 ```
 
 
