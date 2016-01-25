@@ -1,0 +1,7 @@
+---
+# tasks file for iterm2_profile
+
+- name: template iterm2 dynamic profile
+  template:
+    src: dynamic_profile.j2
+    dest: ~/Library/Application Support/iTerm2/DynamicProfiles/{{ profile_filename }}.json

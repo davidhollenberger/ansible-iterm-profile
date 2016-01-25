@@ -1,0 +1,26 @@
+{
+  "Profiles": [
+{% for host in groups[hosts] %}
+    {
+       "Name": "{{ hostvars[host]['ec2_tag_Name'] }}
+  {%- for item in name_vars -%}
+    {%- if hostvars[host][item] is defined -%}
+      -{{ hostvars[host][item] }}
+    {%- endif -%}
+  {%- endfor %}",
+       "Guid": "{{ hostvars[host]['ec2_id'] | to_uuid }}",
+       "Custom Command" : "Yes",
+       "Command" : "ssh {{ hostvars[host]['ec2_private_ip_address'] }}",
+       "Tags" : [
+{% for item in tag_vars -%}
+{% if hostvars[host][item] is defined %}
+            "{{ hostvars[host][item] }}",
+{% endif -%}
+{%- endfor %}
+            "{{ aws_env }}"
+         ],
+       "Dynamic Profile Parent Name": "{{ parent_profile }}"
+    },
+{% endfor %}
+  ]
+}

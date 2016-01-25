@@ -1,0 +1,21 @@
+---
+# defaults file for iterm2_profile
+
+env_tag: "{{ aws_env }}" #variable is overriden from inventory
+
+profile_filename: "aws_{{ env_tag }}"
+
+parent_profile: "aws_{{ env_tag }}"
+
+name_vars:
+  - ec2_tag_pg_cluster
+  - ec2_tag_role
+
+tag_vars:
+  - ec2_tag_type
+  - ec2_tag_pg_cluster
+  - ec2_tag_role
+  - ansible_distribution_version
+  - ec2_id
+  - ec2_placement
+  - ansible_ec2_instance_type
