@@ -31,25 +31,56 @@ Role Variables
 * `parent_profile` Dynamic profiles can inherit existing iTerm profiles.  This role will use the naming standard `aws_{{ env_tag }}` (ie, aws_production).  If those profiles do not exist, the dynamic profile will inherit the *Default* profile.  
 
 
+
 Example Playbook
 ----------------
 
-```yaml
-# Usage: ansible-playbook iterm_dynamic_profile.yml -i <path_to_inventory> --extra-vars="hosts=key_AnsibleKeyPair"
+Follow these steps to setup and run this role using an existing AWS dynamic inventory.
 
-- name: Gather Facts on AWS Instances
-  hosts: {{ host_groups }}
-  connection: ssh
-  tasks:
-    - name: Gather EC2 facts
-      ec2_facts:
+* Create `requirements.yml` file:
 
-- name: Generate iTerm Profile
-  hosts: localhost
-  connection: local
-  roles:
-    - role: ansible-iterm-profile
-```
+  ```yaml
+  ---
+  # This is used to manage Ansible role dependences
+  # http://docs.ansible.com/galaxy.html#installing-multiple-roles-from-a-file
+  # Install with: `ansible-galaxy install -r requirements.yml`
+
+  - name: ansible-iterm-profile
+    src: https://github.com/davidhollenberger/ansible-iterm-profile
+    path: roles/
+  ```
+
+* Create `iterm_dynamic_profile.yml` file:
+
+  ```yaml
+  ---
+  # Usage: ansible-playbook iterm_dynamic_profile.yml -i <path_to_inventory> --extra-vars="hosts=key_AnsibleKeyPair"
+
+  - name: Gather Facts on AWS Instances
+    hosts: "{{ hosts }}"
+    connection: ssh
+    tasks:
+      - name: Gather EC2 facts
+        ec2_facts:
+
+  - name: Generate iTerm Profile
+    hosts: localhost
+    connection: local
+    roles:
+      - role: ansible-iterm-profile
+  ```
+
+* Install role with ansible-galaxy:
+
+  ```
+  ansible-galaxy install -r requirements.yml
+  ```
+
+* Run Playbook:
+
+  ```
+  ansible-playbook iterm_dynamic_profile.yml -i <path_to_inventory> --extra-vars="hosts=key_AnsibleKeyPair
+  ```
 
 
 License
