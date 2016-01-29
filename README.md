@@ -18,7 +18,9 @@ Requirements
 Role Variables
 --------------
 
-**extra-vars**
+**Required Variables**
+
+* `username` The user to use when making an SSH connection to the remote host from iTerm.
 
 * `hosts` Ansible host group to base dynamic inventory on.  You need to have ssh access to all hosts in the group for this role to work.
 
@@ -54,7 +56,7 @@ Follow these steps to setup and run this role using an existing AWS dynamic inve
 
   ```yaml
   ---
-  # Usage: ansible-playbook iterm_dynamic_profile.yml -i <path_to_inventory> --extra-vars="hosts=key_AnsibleKeyPair"
+  # Usage: ansible-playbook iterm_dynamic_profile.yml -i <path_to_inventory> --extra-vars="hosts=key_AnsibleKeyPair username=foo"
 
   - name: Gather Facts on AWS Instances
     hosts: "{{ hosts }}"
@@ -79,7 +81,7 @@ Follow these steps to setup and run this role using an existing AWS dynamic inve
 * Run Playbook:
 
   ```
-  ansible-playbook iterm_dynamic_profile.yml -i <path_to_inventory> --extra-vars="hosts=key_AnsibleKeyPair
+  ansible-playbook iterm_dynamic_profile.yml -i <path_to_inventory> --extra-vars="hosts=key_AnsibleKeyPair"
   ```
 
 

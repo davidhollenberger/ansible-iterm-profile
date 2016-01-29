@@ -10,7 +10,7 @@
   {%- endfor %}",
        "Guid": "{{ hostvars[host]['ec2_id'] | to_uuid }}",
        "Custom Command" : "Yes",
-       "Command" : "ssh {{ hostvars[host]['ec2_private_ip_address'] }}",
+       "Command" : "ssh {{ username }}@{{ hostvars[host]['ec2_private_ip_address'] }}",
        "Tags" : [
 {% for item in tag_vars -%}
 {% if hostvars[host][item] is defined %}
