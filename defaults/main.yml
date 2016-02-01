@@ -12,10 +12,10 @@ name_vars:
   - ec2_tag_role
 
 tag_vars:
+  - aws_env
   - ec2_tag_type
   - ec2_tag_pg_cluster
   - ec2_tag_role
-  - ansible_distribution_version
   - ec2_id
   - ec2_placement
   - ansible_ec2_instance_type

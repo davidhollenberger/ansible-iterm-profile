@@ -1,0 +1,14 @@
+# Usage: ansible-playbook iterm_dynamic_profile.yml -i <path_to_inventory> --extra-vars="hosts=key_AnsibleKeyPair username=foo"
+
+- name: Gather Facts on AWS Instances
+  hosts: "{{ hosts }}"
+  connection: ssh
+  tasks:
+    - name: Gather EC2 facts
+      ec2_facts:
+
+- name: Generate iTerm Profile
+  hosts: localhost
+  connection: local
+  roles:
+    - role: ansible-iterm-profile
