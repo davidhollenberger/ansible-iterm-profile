@@ -41,6 +41,12 @@ Follow these steps to setup and run this role using an existing AWS dynamic inve
 
 * Create `requirements.yml` file:
 
+  Using curl:
+  ```
+  https://raw.githubusercontent.com/davidhollenberger/ansible-iterm-profile/master/requirements.yml
+  ```
+
+  Or copy/paste:
   ```yaml
   ---
   # This is used to manage Ansible role dependences
@@ -54,6 +60,12 @@ Follow these steps to setup and run this role using an existing AWS dynamic inve
 
 * Create `iterm_dynamic_profile.yml` file:
 
+  Using curl:
+  ```
+  curl -o iterm_dynamic_profile.yml https://raw.githubusercontent.com/davidhollenberger/ansible-iterm-profile/master/iterm_dynamic_profile.yml
+  ```
+
+  Or copy/paste:
   ```yaml
   ---
   # Usage: ansible-playbook iterm_dynamic_profile.yml -i <path_to_inventory> --extra-vars="hosts=key_AnsibleKeyPair username=foo"
@@ -81,7 +93,7 @@ Follow these steps to setup and run this role using an existing AWS dynamic inve
 * Run Playbook:
 
   ```
-  ansible-playbook iterm_dynamic_profile.yml -i <path_to_inventory> --extra-vars="hosts=key_AnsibleKeyPair"
+  ansible-playbook iterm_dynamic_profile.yml  --extra-vars="hosts=key_AnsibleKeyPair username=<username>" -i <path_to_inventory>
   ```
 
 

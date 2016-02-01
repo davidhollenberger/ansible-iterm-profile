@@ -17,7 +17,7 @@
             "{{ hostvars[host][item] }}",
 {% endif -%}
 {%- endfor %}
-            "{{ hostvars[host][ansible_distribution] }}.{{ hostvars[host][ansible_distribution_version] }}"
+            "{{ hostvars[host]['ansible_distribution'] }}.{{ hostvars[host]['ansible_distribution_version'] }}"
          ],
        "Dynamic Profile Parent Name": "{{ parent_profile }}"
     },
