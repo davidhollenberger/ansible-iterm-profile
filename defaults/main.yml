@@ -19,3 +19,4 @@ tag_vars:
   - ec2_id
   - ec2_placement
   - ansible_ec2_instance_type
+  - ec2_private_ip_address
