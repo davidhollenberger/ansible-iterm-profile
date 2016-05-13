@@ -1,6 +1,7 @@
 {
   "Profiles": [
 {% for host in groups[hosts] %}
+{% if hostvars[host].ansible_hostname is defined %}
     {
        "Name": "{{ hostvars[host]['ec2_tag_Name'] }}
   {%- for item in name_vars -%}
@@ -21,6 +22,7 @@
          ],
        "Dynamic Profile Parent Name": "{{ parent_profile }}"
     },
+{% endif %}
 {% endfor %}
   ]
 }
