@@ -5,7 +5,7 @@
   connection: ssh
   tasks:
     - name: Gather EC2 facts
-      ec2_facts:
+      ec2_metadata_facts:
 
 - name: Generate iTerm Profile
   hosts: localhost
